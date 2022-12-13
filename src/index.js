@@ -16,55 +16,65 @@ import ReactDom from 'react-dom'
 //CSS
 //JSX inline css stronger than css
 //learning git
+//props
+// props child
+// Refactoring
 
 //css
 import './index.css'
 
 //setup vars
-        const firstBook = {
+const books = [
+{
           img:'https://m.media-amazon.com/images/I/51Zu0ZwT0jL._SX320_BO1,204,203,200_.jpg',
           title:'It Ends with Us',
           author:'hoover'
         
-        };
+        },
 
-          const secondBook = {
+{
           img:'https://m.media-amazon.com/images/I/51-uspgqWIL._SX329_BO1,204,203,200_.jpg',
           title:'Atomic Habits',
           author:'James'
         
-        };
+        },
 
-        const thirdBook = {
+{
           img:'https://m.media-amazon.com/images/I/41zFito0fdL._SX373_BO1,204,203,200_.jpg',
           title:'Gotodinner',
           author:'hardcover'
         
-        };
+        },
+
+        {
+          img:'https://m.media-amazon.com/images/I/518z5dvykPL._SX348_BO1,204,203,200_.jpg',
+          title:'Intresting facts about minds',
+          author:'Jordan'
+        
+        },
+
+      ];
+
 
         function BookList(){
-        return (
-          <section>
-            <Book
-            img={firstBook.img}
-            title={firstBook.title}
-            author={firstBook.author}
-            />
-            <Book 
-            img={secondBook.img} title={secondBook.title} 
-            author={secondBook.author}/>
+          return (
+            <section className='bookname'>{books.map((book)=>{
+              const{img,title,author} = book;
+              return(
+              <Book book={book}> </Book>
 
-            <Book
-            img={thirdBook.img} title={thirdBook.title}
-            author={thirdBook.author}/>
+              );
+            })}
 
-          </section>
-
-        );
+            </section>
+          );
         }
 
-       const Book = ({img,title,author}) =>{
-        // const {img,title,author} = props;
+
+      //  const Book = ({img,title,author}) =>{
+        const Book = (props)=>{
+        const {img,title,author} = props.book;
+
         return (
         <article className='book'>
             <img src={img} alt=''/>
@@ -73,6 +83,6 @@ import './index.css'
             
         </article>
         );
-       }
+       };
        
         ReactDom.render(<BookList/>,document.getElementById('root'));
